@@ -1,0 +1,40 @@
+PRACTICAL 2
+MapReduce Implementation Aim:
+Implement word count / frequency programs using MapReduce.
+Steps:
+C:\hadoop-3.3.0\sbin>start-dfs.cmd
+C:\hadoop-3.3.0\sbin>start-yarn.cmd
+Open a command prompt as administrator and run the following command to create an input
+and output folder on the Hadoop file system, to which we will be moving the sample.txt file
+for our analysis.
+C:\hadoop-3.3.0\bin>cd\
+C:\>hadoop dfsadmin -safemode leave
+DEPRECATED: Use of this script to execute hdfs command is deprecated.
+Instead use the hdfs command for it.
+Safe mode is OFF
+C:\>hadoop fs -mkdir /input_dir
+Check it by giving the following URL at browser
+http://localhost:9870
+Utilities -> browse the file system
+Copy the input text file named input_file.txt in the input directory (input_dir)of HDFS.
+Make a file in c:\input_file.txt and write following content in it.
+Hadoop Window version is easy compared to Ubuntu version
+Now apply the following command at c:\>
+C:\> hadoop fs -put C:/input_file.txt /input_dir
+Verify input_file.txt available in HDFS input directory (input_dir).
+C:\>Hadoop fs -ls /input_dir/
+Verify content of the copied file
+C:\>hadoop dfs -cat /input_dir/input_file.txt
+You can see the file content displayed on the CMD.
+Run MapReduceClient.jar and also provide input and out directories.
+C:\>hadoop jar C:/hadoop-3.3.0/share/hadoop/mapreduce/hadoop-mapreduce-
+examples3.3.0.jar wordcount /input_dir /output_dir
+In case, there is some error in executing then copy the file MapReduceClient.jar in C:\ and
+run the program with the jar file using existing MapReduceClient.jar file as:
+C:\> hadoop jar C:/MapReduceClient.jar wordcount /input_dir /output_dir
+Now, check the output_dir on browser as follows:
+Click on output_dir part-r-00000 Head the file (first 32 K) and check the file content as the
+output.
+Alternatively, you may type the following command on CMD window as:
+C:\> hadoop dfs -cat /output_dir/*
+You can get the following output

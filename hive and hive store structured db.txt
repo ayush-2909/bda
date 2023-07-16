@@ -1,0 +1,29 @@
+PRACTICAL 5
+Aim: Install Hive and use Hive Create and store structured databases.
+Steps: cat >
+/home/cloudera/employee.txt
+1~Sachine~Pune~Product Engineering~100000~Big Data
+2~Gaurav~Banglore~Sales~90000~CRM
+3~Manish~Chennai~Recruiter~125000~HR
+4~Bhushan~Hyderabad~Developer~50000~BFSI cat
+/home/cloudera/employee.txt sudo -u hdfs hadoop fs -put
+/home/cloudera/employee.txt /inputdirectroy hdfs dfs -ls / hdfs dfs -ls
+/inputdirectory hadoop fs -cat /inputdirectory/employee.txt hive show
+databases; create database organization; show databases; use
+organization; show tables; hive> create table employee(
+> id int,
+> name string,
+> city string,
+> department string,
+> salary int,
+> domain string)
+> row format delimited
+> fields terminated by '~';
+show tables; select *
+from employee; show
+tables; load data inpath
+'/inputdirectory/employ
+ee.txt' overwrite into
+table employee; show
+tables; select * from
+employee;

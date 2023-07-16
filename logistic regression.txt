@@ -1,0 +1,34 @@
+PRACTICAL 7
+PRACTICAL 7A
+Logistic Regression
+Aim:
+a) Import data from web storage – binary.csv. Name the dataset and do Logistic Regression to
+find out relation between variables that are affecting the admission of a student in an institute
+based on his or her GRE score, GPA obtained and rank of the student. Also check the model
+is fit or not.
+Code:
+#fetch the data
+college <-
+read.csv("https://raw.githubusercontent.com/csquared/udacitydlnd/maste
+r/nn/binary.csv") head(college)
+nrow(college)
+install.packages("caTools") # For Logistic regression library(caTools)
+split <- sample.split(college, SplitRatio = 0.75) split
+training_reg <- subset(college, split == "TRUE") test_reg
+<- subset(college, split == "FALSE")
+# Training model fit_logistic_model
+<- glm(admit ~ ., data
+= training_reg,
+family = "binomial")
+# Predict test data based on model predict_reg
+<- predict(fit_logistic_model,
+test_reg, type = "response")
+predict_reg
+cdplot(as.factor(admit)~ gpa, data=college) cdplot(as.factor(admit)~
+gre, data=college)
+cdplot(as.factor(admit)~ rank, data=college)
+# Changing probabilities
+predict_reg <- ifelse(predict_reg >0.5, 1, 0) predict_reg
+# Evaluating model accuracy #
+using confusion matrix
+table(test_reg$admit, predict_reg)

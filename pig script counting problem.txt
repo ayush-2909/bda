@@ -1,0 +1,8 @@
+PRACTICAL 4
+Aim : Write a Pig Script for solving counting problems.
+Steps :
+cat> /home/cloudera/input.csv cat /home/cloudera/input.csv pig -x local
+lines = load '/home/cloudera/input.csv' as (line:chararray); words = foreach
+lines GENERATE FLATTEN(TOKENIZE(line)) as woed; grouped =
+GROUP words by woed; wordcount = foreach grouped GENERATE group,
+COUNT(words); dump wordcount;
